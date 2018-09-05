@@ -13,16 +13,16 @@ CI-CRUD is a management system based on CodeIgniter.
 
 
 
-![add_new_student](doc\img\add_new_student.jpg)
+![add_new_student](doc/img/add_new_student.jpg)
 
 
 
-![edit_student](doc\img\edit_student.jpg)
+![edit_student](doc/img/edit_student.jpg)
 
 
 
-![delete_student](doc\img\delete_student.jpg)
+![delete_student](doc/img/delete_student.jpg)
 
 
 
-![charts](doc\img\charts.jpg)
+![charts](doc/img/charts.jpg)
