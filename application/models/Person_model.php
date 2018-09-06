@@ -5,7 +5,7 @@ class Person_model extends CI_Model
 {
 
     var $table = 'persons';
-    var $column = array('firstname', 'lastname', 'gender', 'address', 'dob');
+    var $column = array('firstname', 'lastname', 'gender', 'address', 'dob', 'createTime', 'updateTime', 'createName', 'updateName', 'deleteFlag');
     var $order = array('id' => 'desc');
 
     public function __construct()
@@ -43,6 +43,7 @@ class Person_model extends CI_Model
         $this->_get_datatables_query();
         if ($_POST['length'] != -1)
             $this->db->limit($_POST['length'], $_POST['start']);
+        $this->db->where('deleteFlag', 1);
         $query = $this->db->get();
         return $query->result();
     }
