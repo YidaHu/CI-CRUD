@@ -13,6 +13,12 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/0.4.5/sweetalert2.css">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/sweetalert2/1.3.3/sweetalert2.min.js"></script>
 
+<div>
+    <label class="col-md-3">First Name</label>
+    <input name="first_name_search" placeholder="First Name" class="form-control" style="width: 100px;" type="text">
+    <button class="btn btn-success" onclick="search_person()"><i class="glyphicon glyphicon-plus"></i> Search
+    </button>
+</div>
 <div class="row">
 
     <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> Add New Teacher
@@ -67,6 +73,13 @@
 
         });
     });
+
+    function search_person() {
+        var first_name_search = $('[name="first_name_search"]').val();
+        console.log(first_name_search);
+        var table = $('#table').DataTable();
+        table.column(0).search(first_name_search).draw();
+    }
 
     function add_person() {
         save_method = 'add';
