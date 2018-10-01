@@ -15,7 +15,8 @@
 
 <div>
     <label class="col-md-3">First Name</label>
-    <input name="first_name_search" placeholder="First Name" class="form-control" style="width: 100px;" type="text">
+    <input id="first_name_search" name="first_name_search" placeholder="First Name" class="form-control"
+           style="width: 100px;" type="text">
     <button class="btn btn-success" onclick="search_person()"><i class="glyphicon glyphicon-plus"></i> Search
     </button>
 </div>
@@ -56,6 +57,7 @@
 
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
+            "destroy":true,
 
             // Load data for the table's content from an Ajax source
             "ajax": {
@@ -72,13 +74,47 @@
             ],
 
         });
+
+        var table = $('#table').DataTable();
+        // $('#first_name_search').on('keyup change', function () {
+        //     debugger
+        //     table
+        //         .column(0)
+        //         .search(this.value)
+        //         .draw();
+        // });
     });
 
     function search_person() {
         var first_name_search = $('[name="first_name_search"]').val();
         console.log(first_name_search);
         var table = $('#table').DataTable();
-        table.column(0).search(first_name_search).draw();
+        table.clear();
+
+        table = $('#table').DataTable({
+
+            "processing": true, //Feature control the processing indicator.
+            "serverSide": true, //Feature control DataTables' server-side processing mode.
+            "destroy":true,
+
+            // Load data for the table's content from an Ajax source
+            "ajax": {
+                "url": "<?php echo site_url('student/ajax_list')?>",
+                "type": "POST"
+            },
+
+            //Set column definition initialisation properties.
+            "columnDefs": [
+                {
+                    "targets": [-1], //last column
+                    "orderable": false, //set not orderable
+                },
+            ],
+
+        });
+
+        // table.columns(0).search(first_name_search).draw();
+        // table .search(first_name_search).draw();
     }
 
     function add_person() {
